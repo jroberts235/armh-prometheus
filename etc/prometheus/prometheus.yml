@@ -1,0 +1,118 @@
+global:
+  scrape_interval:     30s
+  evaluation_interval: 30s
+
+  labels:
+    cluster: swarm
+    replica: "1"
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+    monitor: 'prometheus-swarm'
+
+rule_files:
+  - "alert.rules_nodes"
+  - "alert.rules_tasks"
+  - "alert.rules_service-groups"
+
+scrape_configs:
+  - job_name: 'prometheus'
+    dns_sd_configs:
+    - names:
+      - 'tasks.prometheus'
+      type: 'A'
+      port: 9090
+
+  - job_name: 'cadvisor'
+    dns_sd_configs:
+    - names:
+      - 'tasks.cadvisor'
+      type: 'A'
+      port: 8080
+
+  - job_name: 'node-exporter'
+    dns_sd_configs:
+    - names:
+      - 'tasks.node-exporter'
+      type: 'A'
+      port: 9100
+
+  - job_name: 'docker-exporter'
+    dns_sd_configs:
+    - names:
+      - 'tasks.docker-exporter'
+      type: 'A'
+      port: 4999
+
+  - job_name: 'room1'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room1:8000']
+
+  - job_name: 'room2'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room2:8000']
+
+  - job_name: 'room3'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room3:8000']
+
+  - job_name: 'room4'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room5:8000']
+
+  - job_name: 'room6'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room6:8000']
+
+  - job_name: 'room7'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room7:8000']
+
+  - job_name: 'room8'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room8:8000']
+
+  - job_name: 'room9'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room9:8000']
+
+  - job_name: 'room10'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room10:8000']
+
+  - job_name: 'room11'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room11:8000']
+
+  - job_name: 'room12'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room12:8000']
+
+  - job_name: 'room13'
+    metrics_path: '/'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['room13:8000']
